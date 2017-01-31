@@ -9,6 +9,8 @@ var {Trainer} = require('./models/trainer');
 
 
 var app = express();
+const port = process.env.PORT || 3000;
+
 // this makes the app send json data to server
 app.use(bodyParser.json());
 // creating a todo
@@ -49,8 +51,8 @@ app.get('/todos/:id', (req, res) => {
 	});
 });
 
-app.listen(3000, () => {
-	console.log('Started on port 3000')
+app.listen(port, () => {
+	console.log(`Started up at port ${port}`)
 });
 
 
