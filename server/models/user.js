@@ -21,6 +21,16 @@ var UserSchema = new mongoose.Schema({
 		required: true,
 		minlength: 6,
 	},
+	admin: {
+		type: Boolean,
+		default: true
+	},
+	resetPasswordToken: {
+		type: String
+	},
+	resetPasswordExpires: {
+		type: Date
+	},
 	tokens: [{
 		access: {
 			type: String,
@@ -32,6 +42,10 @@ var UserSchema = new mongoose.Schema({
 		}
 	}],
 });
+
+UserSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.pw);
+};
 
 UserSchema.statics.findByCredentials = function(email, password) {
 	var User = this;
@@ -51,20 +65,20 @@ UserSchema.statics.findByCredentials = function(email, password) {
 	})
 };
 
-UserSchema.pre('save', function(next) {
-	var user = this;
-	if(user.isModified('password')) {
-		bcrypt.genSalt(10, (err, salt) => {
-			bcrypt.hash(user.password, salt, (err, hash) => {
-				user.password = hash;
-				next();
-			})
-		});
-	}
-	else {
-		next();
-	}
-})
+// UserSchema.pre('save', function(next) {
+// 	var user = this;
+// 	if(user.isModified('password')) {
+// 		bcrypt.genSalt(10, (err, salt) => {
+// 			bcrypt.hash(user.password, salt, (err, hash) => {
+// 				user.password = hash;
+// 				next();
+// 			})
+// 		});
+// 	}
+// 	else {
+// 		next();
+// 	}
+// })
 UserSchema.statics.findByToken = function(token) {
 	var User = this;
 	var decoded;
@@ -80,12 +94,12 @@ UserSchema.statics.findByToken = function(token) {
 		'tokens.access': 'auth'
 	})
 };
-UserSchema.methods.toJSON = function() {
-	var user = this;
-	var userObject = user.toObject();
+// UserSchema.methods.toJSON = function() {
+// 	var user = this;
+// 	var userObject = user.toObject();
 
-	return _.pick(userObject, ['_id', 'email']);
-};
+// 	return _.pick(userObject, ['_id', 'email', 'password']);
+// };
 UserSchema.methods.generateAuthToken = function() {
 	var user = this;
 	var access = 'auth';

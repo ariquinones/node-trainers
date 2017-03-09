@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Trainers App</title>
+  <link href="/styles/styles.css" rel="stylesheet">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="loginContainer trainerCard">
+		<div>
+		<h1>Sign Up</h1>
+		<form method="POST" action="/users">
+			<input type="text" class="formInput" name="email" placeholder="Email">
+			<input type="password" class="formInput" name="password" placeholder="Password">
+			<input type="submit" class="actionButton" value="Sign Up">
+		</form>
+		</div>
+		<div>
+		<h1>Login</h1>
+		<form method="POST" action="/users/login">
+			<input type="text" class="formInput" name="email"  placeholder="Email">
+			<input type="password" class="formInput" name="password"  placeholder="Password">
+			<input type="submit" class="actionButton" value="Login">
+		</form>
+		<a href="/forgot">
+			<p><small>Forgot password?</small></p>
+		</a>
+		</div>
+	</div>
+</body>
+</html>

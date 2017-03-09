@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trainer</title>
+  <link href="/styles/styles.css" rel="stylesheet">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="adminRole" style="display:none;"><%= admin %></div>
+<section id="sideMenu">
+  <a href="/trainers">
+    <div class="logoContainer">
+      <img src="/images/nutritionDepotLogo.png">
+    </div>
+  </a>
+  <div class="sideMenuOptions">
+    <a href="/trainers">
+      <div>Trainers</div>
+    </a>
+    <a class="admin" href="/analytics">
+      <div>Analytics</div>
+    </a>
+    <a class="admin" href="/admin">
+      <div>Admin</div>
+    </a>
+  </div>
+</section>
+
+
+  <section id="main">
+
+    <div id="topMenu">
+      <div class="searchContainer">
+        <div class="divider">
+        </div>
+        <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+        <input type="text" placeholder="Type anywhere to search" id="searchTrainersInput" class="searchTrainersBox" />
+      </div>
+      <div class="userSettingsContainer">
+        <div class="divider">
+        </div>
+        <div class="userSettings">
+         <a href="/logout">
+           <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+         </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="mainContent">
+
+        <form action="/trainer/update/<%= trainer._id %>" method="POST">
+          <div class="row">
+            <h1 class="trainerTitle nonUpdateForm">Profile: <%= trainer.firstName %> <%= trainer.lastName %></h1>
+            <h1 class="updateForm trainerTitle">Profile:
+              <input class="formInput" type="text"  value="<%= trainer.firstName %>" name="firstName">
+              <input class="formInput" type="text" value="<%= trainer.lastName %>" name="lastName">
+            </h1>
+            <input type="button" class="actionButton nonUpdateForm" id="editTrainerProfileBtn" value="Edit"/>          
+            <button class="updateForm actionButton" type="submit">Update</button>
+          </div>
+
+        <div class="row">
+          <div class="trainerCard individualTrainer">
+            <!-- <div class="individualTrainerViewFlex">
+              <div class="trainerImg">
+                  <i class="fa fa-user fa-4x" aria-hidden="true"></i>
+              </div>
+            </div> -->
+            <div class="individualTrainerViewFlex">
+                <div class="individualTrainerInfoValues"> 
+                  <span class="infoLabel">
+                    <div class="faContainer">
+                      <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                    </div>
+                  Email:</span>
+                  <span class="textRed nonUpdateForm"><%= trainer.email %></span>
+                  <input class="updateForm formInput" type="text" value="<%= trainer.email %>" name="email">
+                </div>
+                <div class="individualTrainerInfoValues"> 
+                  <span class="infoLabel">
+                    <div class="faContainer">
+                      <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                    </div>
+                  Work:</span>
+                  <span class="textRed nonUpdateForm phoneNumber"><%= trainer.workNumber %></span>
+                  <input class="updateForm formInput" type="text" value="<%= trainer.workNumber %>" name="workNumber">
+                </div>
+                <div class="individualTrainerInfoValues"> 
+                  <span class="infoLabel">
+                    <div class="faContainer">
+                      <i class="fa fa-mobile fa-2x" aria-hidden="true"></i>
+                    </div>
+                  Mobile:</span>
+                  <span class="textRed nonUpdateForm phoneNumber"><%= trainer.mobileNumber %></span>
+                  <input class="updateForm formInput" type="text" value="<%= trainer.mobileNumber %>" name="mobileNumber">
+                </div>
+                <div class="individualTrainerInfoValues"> 
+                  <span class="infoLabel">
+                    <div class="faContainer">
+                      <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+                    </div>
+                  Created:</span>
+                  <span class="textRed"><%= trainer.createdAt %></span>
+                </div>
+                <div class="individualTrainerInfoValues"> 
+                  <span class="infoLabel">
+                    <div class="faContainer">
+                      <i class="fa fa-tag fa-2x" aria-hidden="true"></i>
+                    </div>
+                  Promo Code:</span>
+                  <span class="textRed"><%= trainer.promoCode %></span>
+                </div>
+              </div>
+          </div> 
+        </form>
+
+          <div class="trainerCard">
+            <div class="trainerPointsActionContainer individualTrainerViewFlex">
+              <div>
+                  <i class="textRed fa fa-star fa-5x" aria-hidden="true"></i>
+              </div>
+              <h1 class="textRed"><%= trainer.points %> <small>($<%= trainer.cashPoints %>)</small></h1>
+              <h2 class="textRed">Points accumulated</h2>
+              <form action="/trainer/addpoints/<%= trainer._id %>" method="POST">
+                  <input style="display: none;" type="text" value="<%= trainer.points %>" name="points">
+                  <input style="display: none;" type="text" value="<%= trainer.timesUsed %>" name="timesUsed">
+                  <input style="display: none;" type="text" value="<%= trainer.cashPoints %>" name="cashPoints">
+                  <input class="formInput" type="text" value="0" id="pointsToAdd" />
+                  <input type="submit" value="+Points" id="addTrainerPoints" class="actionButton" />
+              </form>
+              <form action="/trainer/redeem/<%= trainer._id %>" method="POST">
+                  <input style="display: none;" type="text" value="<%= trainer.points %>" name="points">
+                  <input style="display: none;" type="text" value="<%= trainer.cashPoints %>" name="cashPoints">
+                  <input class="formInput" type="text" value="0"  id="pointsToRedeem" />
+                  <input type="submit" value="Redeem" id="redeemTrainerPoints" class="actionButton" />
+              </form>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <form action="/trainer/delete/<%= trainer._id %>" method="POST">
+             <button class="updateForm actionButton admin" type="submit">Delete</button>
+          </form>
+        </div>
+    </div>
+  </section>
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+
+
+

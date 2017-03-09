@@ -1,0 +1,237 @@
+:root {
+	--darkBlue: #2d3037;
+	--lightBlue: #34373f;
+	--mainGray: #b4b4b4;
+	--lightGray: #f4f4f4;
+	--nutritionRed: #d10000;
+	--textGray: #f4f4f4;
+	--textBoldGray: #5e6d6d;
+}
+*, :before, :after {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box !important;
+	-moz-box-sizing: border-box !important;
+	-ms-box-sizing: border-box !important;
+	box-sizing: border-box !important;
+}
+body {
+	margin: 0 auto;
+	background: var(--darkBlue);
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+body > section {
+	height: 100vh;
+	vertical-align: top;
+	float: left;
+}
+/* SIDE MENU */
+#sideMenu {
+	width: 20%;
+	background: var(--darkBlue);
+}
+#sideMenu  .logoContainer {
+	width: 60%;
+	height: 10vh;
+	margin: auto;
+}
+#sideMenu .logoContainer > img {
+	width: 100%;
+}
+#sideMenu .sideMenuOptions  div {
+	color: rgba(255,255,255,.9);
+	font-size: 1.25em;
+	padding: 1.5em;
+	cursor: pointer;
+}
+#sideMenu .sideMenuOptions div:hover {
+	background: var(--lightBlue);
+}
+
+/* Main Section */
+#main {
+	width: 79%;
+	background: var(--lightGray);
+}
+#main #topMenu {
+	background: #FFF;
+	height: 10vh;
+}
+#main #topMenu > div {
+	line-height: 10vh;
+	display: inline-block;
+	padding: 0px 15px;
+}
+#main #topMenu > div  * {
+	vertical-align: middle;
+}
+#main #topMenu > div .fa {
+	color: var(--textBoldGray);
+}
+.searchContainer {
+	width: 70%;
+}
+.divider {
+	height: 5vh;
+	width: 3px;
+	display: inline-block;
+	background: var(--mainGray);
+	margin: 0px 15px;
+}
+.searchTrainersBox {
+	font-size: 1.25em;
+	width: 50%;
+	padding: 10px 5px;
+	border: none;
+}
+.searchTrainersBox:focus {
+	outline: none;
+}
+
+.userSettingsContainer {
+	width: 25%;
+	text-align: right;
+}
+.userSettingsContainer .fa {
+	margin: 0px 10px;
+}
+.userSettings {
+	display: inline-block;
+}
+
+
+/* Trainer Card */
+#mainContent {
+	padding: 15px;
+	background: var(--lightGray);
+}
+.trainerCard {
+	border: var(--nutritionRed) 2px solid;
+	border-radius: 2px;
+	-webkit-box-shadow: 5px 5px 10px 1px rgba(50,50,50,0.5);
+	-moz-box-shadow: 5px 5px 10px 1px rgba(50,50,50,0.5);
+	box-shadow: 5px 5px 10px 1px rgba(50,50,50,0.5);
+	background: #FFF;
+	display: inline-block;
+	margin: 1em;
+}
+.flexContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 35vh;
+	width: 20em;
+}
+.trainerImg {
+	text-align: center;
+	height: 15vh;
+}
+.trainerImg .fa {
+	margin: auto;
+	line-height: 15vh;
+	color: var(--lightBlue);
+}
+.trainerInfoSnippet > div {
+	display: inline-block;
+	width: 45%;
+	margin: auto;
+	padding: 1.5em .75em;
+}
+.infoLabel {
+	color: var(--textBoldGray);
+	font-weight: 900;
+	text-transform: uppercase;
+}
+.textRed {
+	color: var(--nutritionRed) !important;
+	font-weight: 500;
+}
+
+/* Individual Trainer View */
+.trainerTitle {
+	margin: 1em;
+}
+.row {
+	display: flex;
+	flex-wrap: wrap;
+}
+.individualTrainerViewFlex{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 45vh;
+	min-width: 15em;
+	padding: 10px;
+}
+.individualTrainerInfoValues {
+	padding: 15px 10px;
+	border-bottom: 1px solid var(--lightGray);
+	display: flex;
+	flex-direction: row;
+    align-items: baseline;
+    min-width: 40em;
+}
+.individualTrainerInfoValues > * {
+	flex-grow: 1;
+	flex-basis: 0em;
+}
+.individualTrainerInfoValues .faContainer {
+	width: 2.5em;
+	margin-right: 15px;
+	display: inline-block;
+	text-align: center;
+}
+.trainerPointsActionContainer {
+	text-align: center;
+}
+.actionButton {
+	  border-radius: 3px;
+	  border: 1px solid rgb(67, 72, 83);
+	  background-color: rgb(67, 72, 83);
+	  padding: 10px 20px;
+	  color: rgba(255,255,255,.9);
+	  margin: auto;
+	  cursor: pointer;
+}
+.updateForm {
+	display: none;
+}
+.formInput {
+	background: var(--lightGray);
+	color: var(--mainGray);
+	border: 1px solid var(--lightGray);
+	padding: 5px 2px;
+}
+.formInput:focus {
+	outline: none;
+	border:  1px solid var(--nutritionRed);
+}
+/* Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5); */
+
+
+/* Login paga */
+
+.loginContainer {
+	position: absolute;
+	top: 50%;
+	right: 50%;
+	transform: translateY(-50%) translateX(50%);
+	width: 35%;
+	min-height: 35vh;
+	display: block;
+	padding: 3em 0;
+	text-align: center;
+}
+.loginContainer input {
+	display: block;
+	margin: 5px auto;
+	width: 50%;
+}
+
+/* Analytics */
+.textCenter {
+	text-align: center;
+}

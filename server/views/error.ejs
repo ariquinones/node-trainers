@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Error</title>
+  <link href="/styles/styles.css" rel="stylesheet">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="adminRole" style="display:none;"><%= admin %></div>
+<section id="sideMenu">
+  <a href="/trainers">
+    <div class="logoContainer">
+      <img src="/images/nutritionDepotLogo.png">
+    </div>
+  </a>
+  <div class="sideMenuOptions">
+    <a href="/trainers">
+      <div>Trainers</div>
+    </a>
+    <a class="admin" href="/analytics">
+      <div>Analytics</div>
+    </a>
+    <a class="admin" href="/admin">
+      <div>Admin</div>
+    </a>
+  </div>
+</section>
+
+  <section id="main">
+
+    <div id="topMenu">
+      <div class="searchContainer">
+        <div class="divider">
+        </div>
+        <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+        <input type="text" placeholder="Type anywhere to search" id="searchTrainersInput" class="searchTrainersBox" />
+      </div>
+      <div class="userSettingsContainer">
+        <div class="divider">
+        </div>
+        <div class="userSettings">
+          <a href="/logout">
+            <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="mainContent">
+        <div class="row">
+          <h1 class="trainerTitle">Oops! Something went wrong!</h1>
+        </div>
+        <div class="trainerCard individualTrainer">
+            <% for(var i=0; i<errMessages.length; i++) { %>
+              <div class="individualTrainerInfoValues"> 
+                <span class="infoLabel">
+                <%= errMessages[i] %>
+                </span>
+              </div>
+            <% } %>
+            <div class="individualTrainerInfoValues"> 
+             <a href="javascript:history.back()">
+                 <button class="actionButton">Try Again</button>
+              </a>
+            </div>
+        </div> 
+      
+    </div>
+  </section>
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
